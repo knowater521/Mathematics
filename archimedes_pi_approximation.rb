@@ -15,7 +15,7 @@
 require "bigdecimal"
 
 class PiApproximation
-  attr_accessor :n, :p
+  attr_reader :n
 
   def initialize(prec = 28)
     # 計算精度
@@ -31,27 +31,15 @@ class PiApproximation
 
   def each
     loop do
+      yield self
       @n *= 2
       @p = q
-      yield self
     end
   end
 
   def print_result
     puts "n = #{@n}のとき"
     puts "  #{l.to_s("f")} < π < #{m.to_s("f")}"
-  end
-
-  # 内接正n角形の1辺の長さの1/2
-  # = sqrt(1 - p^2)
-  def a
-    (1 - @p ** 2).sqrt(0)
-  end
-
-  # 外接正n角形の1辺の長さの1/2
-  # = a/p
-  def b
-    a / @p
   end
 
   # 内接正n角形の周りの長さの1/2
@@ -66,6 +54,23 @@ class PiApproximation
     b * @n
   end
 
+  private
+
+  attr_writer :n
+  attr_accessor :p
+
+  # 内接正n角形の1辺の長さの1/2
+  # = sqrt(1 - p^2)
+  def a
+    (1 - @p ** 2).sqrt(0)
+  end
+
+  # 外接正n角形の1辺の長さの1/2
+  # = a/p
+  def b
+    a / @p
+  end
+
   # 円の中心から内接正2n角形の1辺へ下ろした垂線の長さ
   # = sqrt((1 + p)/2)
   def q
@@ -76,11 +81,9 @@ end
 if __FILE__ == $0
   # 利用例
   pa = PiApproximation.new(30)
-  pa.print_result
   pa.each do |pi|
     pi.print_result
-    puts pi.n
-    if pi.n > 10000000
+    if pi.n > 50000
       break
     end
   end
