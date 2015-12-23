@@ -23,7 +23,5 @@ def pi_approx(sampling):
 
 
 if __name__ == '__main__':
-    sampling = 1000000
-    if len(sys.argv) == 2:
-        sampling = int(sys.argv[1])
+    sampling = int(sys.argv[1]) if len(sys.argv) == 2 else 1000000
     print('π ≒ {0}'.format(pi_approx(sampling)))
