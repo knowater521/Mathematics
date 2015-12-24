@@ -16,4 +16,4 @@
 (let [sampling (if (= (count *command-line-args*) 2)
                  (Integer/parseInt (nth *command-line-args* 1))
                  1000000)]
-  (println (pi-approx sampling)))
+  (println (str "π ≒ " (pi-approx sampling))))
