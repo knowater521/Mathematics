@@ -10,4 +10,9 @@ defmodule PiApproximationByThrowingDarts do
   end
 end
 
-IO.puts "π ≒ #{PiApproximationByThrowingDarts.pi_approx(1000000)}"
+sampling = if length(System.argv) == 1 do
+  System.argv |> List.first |> String.to_integer
+else
+  1000000
+end
+IO.puts "π ≒ #{PiApproximationByThrowingDarts.pi_approx(sampling)}"
