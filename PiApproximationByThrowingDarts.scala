@@ -12,9 +12,7 @@ object PiApproximationByThrowingDarts {
   }
 
   def main(args: Array[String]): Unit = {
-    val sampling =
-      if (args.length == 1) args(0).toInt
-      else 1000000
+    val sampling = if (args.length == 1) args(0).toInt else 1000000
     println(s"π ≒ ${piApprox(sampling)}")
   }
 }
