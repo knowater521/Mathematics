@@ -8,7 +8,7 @@ class PiApproximationByThrowingDarts {
         val (x, y) = random() to random()
         if (pow(x, 2.0) + pow(y, 2.0) < 1) 1 else 0
       }
-      val count = (1..sampling).map(dart).fold(0) { a, b -> a + b }
+      val count = (1..sampling).map(dart).sum()
       return count.toDouble() / sampling * 4
     }
   }
